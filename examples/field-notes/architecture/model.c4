@@ -1,0 +1,64 @@
+specification {
+  element area
+  element interface
+  element service
+  element store
+}
+
+model {
+  collect = area 'Collect' {
+    notebook = interface 'Notebook' {
+      description 'A fictional form for recording observations.'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+    inbox = store 'Observation inbox' {
+      description 'A fictional holding area for new notes.'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+  }
+
+  organize = area 'Organize' {
+    sorter = service 'Note sorter' {
+      description 'A fictional service that groups notes by topic.'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+    catalog = store 'Topic catalog' {
+      description 'A fictional catalog of organized notes.'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+  }
+
+  share = area 'Share' {
+    digest = service 'Digest builder' {
+      description 'A fictional service that assembles a short digest.'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+    reader = interface 'Digest reader' {
+      description 'A fictional screen for reading the digest.'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+  }
+
+  collect.notebook -> collect.inbox 'save note'
+  collect.inbox -> organize.sorter 'send new note'
+  organize.sorter -> organize.catalog 'store topic'
+  organize.catalog -> share.digest 'select notes'
+  share.digest -> share.reader 'publish digest'
+}
+
+views {
+  view index {
+    title 'Field Notes structure'
+    include collect.notebook, collect.inbox, organize.sorter, organize.catalog,
+      share.digest, share.reader
+  }
+
+  dynamic view note_to_digest {
+    title 'Note to digest'
+    collect.notebook -> collect.inbox 'save note'
+    collect.inbox -> organize.sorter 'send new note'
+    organize.sorter -> organize.catalog 'store topic'
+    organize.catalog -> share.digest 'select notes'
+    share.digest -> share.reader 'publish digest'
+  }
+}

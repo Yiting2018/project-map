@@ -1,0 +1,10 @@
+node_modules/
+dist/
+coverage/
+artifacts/
+.project-map-build-*/
+.env*
+*.local.json
+*.log
+*.tgz
+.DS_Store

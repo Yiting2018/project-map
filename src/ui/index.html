@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"
+    >
+    <title>Project Map Dashboard</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./data.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+    <div id="app" data-testid="dashboard-app">
+      <div class="boot-state" role="status">
+        <span class="boot-mark" aria-hidden="true"></span>
+        <span>正在整理项目快照…</span>
+      </div>
+    </div>
+    <noscript>此只读 Dashboard 需要启用 JavaScript 才能展示静态项目数据。</noscript>
+  </body>
+</html>

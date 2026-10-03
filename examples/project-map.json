@@ -1,0 +1,6 @@
+{
+  "projects": [
+    "field-notes/project.json",
+    "dispatch/project.json"
+  ]
+}

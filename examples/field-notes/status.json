@@ -1,0 +1,31 @@
+{
+  "modules": [
+    {
+      "moduleId": "collect.notebook",
+      "phase": "reviewed",
+      "summary": "Fictional status record used only to demonstrate the detail panel.",
+      "blockers": [],
+      "work": ["Fictional task: review the note fields"],
+      "acceptance": [
+        {"title": "Fictional form walkthrough", "result": "passed"}
+      ],
+      "evidence": [
+        {
+          "title": "Fictional demonstration record",
+          "path": "evidence/fictional-record.md",
+          "recordedAt": "2026-01-15",
+          "scope": "Fictional example; not evidence of a real acceptance run"
+        }
+      ]
+    },
+    {
+      "moduleId": "share.digest",
+      "phase": "draft",
+      "summary": "Fictional draft record with no defined acceptance items.",
+      "blockers": ["Fictional dependency has not been described"],
+      "work": [],
+      "acceptance": [],
+      "evidence": []
+    }
+  ]
+}

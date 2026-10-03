@@ -1,0 +1,7 @@
+stateDiagram-v2
+  [*] --> Received
+  Received --> Labeled: fictional label assigned
+  Labeled --> Routed: fictional route chosen
+  Routed --> RevisionRequested: fictional revision requested
+  RevisionRequested --> Labeled: fictional relabeling
+  Routed --> [*]: fictional dispatch shown

@@ -1,0 +1,31 @@
+{
+  "modules": [
+    {
+      "moduleId": "intake.queue",
+      "phase": "exercise",
+      "summary": "Fictional exercise record used only to demonstrate status rendering.",
+      "blockers": [],
+      "work": ["Fictional task: trace one sample parcel through the queue"],
+      "acceptance": [
+        {"title": "Fictional queue trace", "result": "not_run"}
+      ],
+      "evidence": [
+        {
+          "title": "Fictional demonstration record",
+          "path": "evidence/fictional-record.md",
+          "recordedAt": "2026-02-02",
+          "scope": "Fictional example; not evidence of a real run"
+        }
+      ]
+    },
+    {
+      "moduleId": "routing.planner",
+      "phase": "sketch",
+      "summary": "Fictional sketch with no acceptance criteria defined.",
+      "blockers": [],
+      "work": [],
+      "acceptance": [],
+      "evidence": []
+    }
+  ]
+}

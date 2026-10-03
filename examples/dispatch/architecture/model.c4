@@ -1,0 +1,63 @@
+specification {
+  element area
+  element interface
+  element component
+}
+
+model {
+  intake = area 'Intake' {
+    counter = interface 'Parcel counter' {
+      description 'A fictional intake screen for sample parcels.'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+    labeler = component 'Label maker' {
+      description 'A fictional component that assigns sample labels.'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+    queue = component 'Intake queue' {
+      description 'A fictional queue for labeled sample parcels.'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+  }
+
+  routing = area 'Routing' {
+    planner = component 'Route planner' {
+      description 'A fictional component that chooses a demonstration route.'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+    board = interface 'Dispatch board' {
+      description 'A fictional screen that shows demonstration routing.'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+  }
+
+  intake.counter -> intake.labeler 'submit parcel'
+  intake.labeler -> intake.queue 'enqueue labeled parcel'
+  intake.queue -> routing.planner 'request route'
+  routing.planner -> routing.board 'show assignment'
+  routing.board -> routing.planner 'request revision'
+  routing.planner -> intake.queue 'return for relabeling'
+}
+
+views {
+  view index {
+    title 'Parcel Lab structure'
+    include intake.counter, intake.labeler, intake.queue, routing.planner, routing.board
+  }
+
+  dynamic view parcel_dispatch {
+    title 'Parcel dispatch'
+    intake.counter -> intake.labeler 'submit parcel'
+    intake.labeler -> intake.queue 'enqueue labeled parcel'
+    intake.queue -> routing.planner 'request route'
+    routing.planner -> routing.board 'show assignment'
+  }
+
+  dynamic view route_revision {
+    title 'Route revision'
+    routing.board -> routing.planner 'request revision'
+    routing.planner -> intake.queue 'return for relabeling'
+    intake.queue -> routing.planner 'request route again'
+    routing.planner -> routing.board 'show revised assignment'
+  }
+}

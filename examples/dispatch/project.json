@@ -1,0 +1,67 @@
+{
+  "id": "parcel-lab",
+  "name": "Parcel Lab",
+  "subtitle": "A fictional parcel-routing laboratory",
+  "scope": "Fictional package example",
+  "notice": "All names, records, dates, and evidence in this project are fictional demonstration data.",
+  "observedAt": "2026-02-02",
+  "modelPath": "architecture",
+  "likec4Project": "parcellab",
+  "domainKind": "area",
+  "domainPresentation": {
+    "intake": {"color": "#3f819d", "icon": "clipboard", "order": 0},
+    "routing": {"color": "#bc5a70", "icon": "map-trifold", "order": 1}
+  },
+  "layers": [
+    {"id": "interface", "label": "Interface", "description": "Fictional operator-facing surfaces", "kinds": ["interface"]},
+    {"id": "component", "label": "Component", "description": "Fictional routing components", "kinds": ["component"]}
+  ],
+  "modulePresentation": {},
+  "gapKinds": [],
+  "gapRelationKinds": [],
+  "gapMarkers": [],
+  "scopeGroups": [],
+  "defaultModuleScope": "Fictional example",
+  "overviewModuleIds": [
+    "intake.counter",
+    "intake.labeler",
+    "intake.queue",
+    "routing.planner",
+    "routing.board"
+  ],
+  "statuses": [
+    {"id": "sketch", "label": "Fictional sketch", "color": "#b88416"},
+    {"id": "exercise", "label": "Fictional exercise", "color": "#8c61cb"}
+  ],
+  "statusPath": "status.json",
+  "defaultFlowId": "parcel_dispatch",
+  "flows": [
+    {
+      "viewId": "parcel_dispatch",
+      "title": "Parcel dispatch",
+      "scope": "Fictional sequence",
+      "conclusion": "Demonstration sequence only; no real dispatch was executed."
+    },
+    {
+      "viewId": "route_revision",
+      "title": "Route revision",
+      "scope": "Fictional sequence",
+      "conclusion": "Demonstration loop only; no real revision was tested."
+    }
+  ],
+  "states": [
+    {
+      "id": "parcel",
+      "title": "Fictional parcel states",
+      "description": "A demonstration state diagram with no production meaning.",
+      "moduleIds": ["intake.queue", "routing.planner", "routing.board"],
+      "sourcePath": "states/parcel.mmd"
+    }
+  ],
+  "recentWork": {
+    "title": "Fictional routing exercise recorded",
+    "summary": "The sample intentionally contains two domains, two layers, five modules, two simple flows, and one Mermaid state diagram.",
+    "location": "Package example",
+    "source": {"title": "Fictional record", "path": "evidence/fictional-record.md"}
+  }
+}

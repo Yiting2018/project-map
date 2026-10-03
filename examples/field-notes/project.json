@@ -1,0 +1,56 @@
+{
+  "id": "field-notes",
+  "name": "Field Notes",
+  "subtitle": "A fictional note-to-digest workspace",
+  "scope": "Fictional package example",
+  "notice": "All names, records, dates, and evidence in this project are fictional demonstration data.",
+  "observedAt": "2026-01-15",
+  "modelPath": "architecture",
+  "likec4Project": "fieldnotes",
+  "domainKind": "area",
+  "domainPresentation": {
+    "collect": {"color": "#2875e8", "icon": "clipboard", "order": 0},
+    "organize": {"color": "#8c61cb", "icon": "stack", "order": 1},
+    "share": {"color": "#189875", "icon": "files", "order": 2}
+  },
+  "layers": [
+    {"id": "touchpoint", "label": "Touchpoint", "description": "Where a fictional user interacts", "kinds": ["interface"]},
+    {"id": "service", "label": "Service", "description": "Where fictional work is coordinated", "kinds": ["service"]},
+    {"id": "record", "label": "Record", "description": "Where fictional information is retained", "kinds": ["store"]}
+  ],
+  "modulePresentation": {},
+  "gapKinds": [],
+  "gapRelationKinds": [],
+  "gapMarkers": [],
+  "scopeGroups": [],
+  "defaultModuleScope": "Fictional example",
+  "overviewModuleIds": [
+    "collect.notebook",
+    "collect.inbox",
+    "organize.sorter",
+    "organize.catalog",
+    "share.digest",
+    "share.reader"
+  ],
+  "statuses": [
+    {"id": "draft", "label": "Fictional draft", "color": "#b88416"},
+    {"id": "reviewed", "label": "Fictionally reviewed", "color": "#2875e8"}
+  ],
+  "statusPath": "status.json",
+  "defaultFlowId": "note_to_digest",
+  "flows": [
+    {
+      "viewId": "note_to_digest",
+      "title": "Note to digest",
+      "scope": "Fictional sequence",
+      "conclusion": "Demonstration sequence only; it does not represent a tested system."
+    }
+  ],
+  "states": [],
+  "recentWork": {
+    "title": "Fictional example assembled",
+    "summary": "The sample intentionally contains three domains, three layers, six modules, and one simple flow.",
+    "location": "Package example",
+    "source": {"title": "Fictional record", "path": "evidence/fictional-record.md"}
+  }
+}
