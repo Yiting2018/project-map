@@ -21,6 +21,8 @@ export function sourcePath(root, value) {
 }
 export function normalizeProject(config, model, statusFile, {root, builtAt, revision, modelHash}) {
   if (!/^[a-z][a-z0-9-]*$/.test(config.id)) fail('Invalid project ID');
+  const locale = config.locale ?? 'zh-CN';
+  if (!['zh-CN', 'en'].includes(locale)) fail('Unsupported locale: use zh-CN or en');
   const all = Object.values(model.elements);
   const ids = unique(all, 'model elements');
   for (const [key, element] of Object.entries(model.elements)) if (key !== element.id) fail(`Element key mismatch: ${key}`);
@@ -118,7 +120,7 @@ export function normalizeProject(config, model, statusFile, {root, builtAt, revi
     for (const module of modules) if (referenced.includes(module.id)) module.flowIds.push(entry.viewId);
     return {id:entry.viewId, title:entry.title || view.title, description:text(view.description),
       kind:view._type === 'dynamic' ? 'sequence' : 'relationships', moduleIds:referenced, edges:ordered,
-      scope:entry.scope || '', conclusion:entry.conclusion || '尚无链路验收记录',
+      scope:entry.scope || '', conclusion:entry.conclusion || (locale === 'en' ? 'No flow acceptance recorded' : '尚无链路验收记录'),
       techUrl:`./technical/${config.id}/#/view/${encodeURIComponent(entry.viewId)}/`};
   });
   unique(flows, 'flows');
@@ -136,8 +138,8 @@ export function normalizeProject(config, model, statusFile, {root, builtAt, revi
   });
   unique(states, 'states');
   if (config.recentWork?.source) sourcePath(root, config.recentWork.source.path);
-  return {id:config.id, name:config.name, subtitle:config.subtitle || '', scope:config.scope || '', notice:config.notice || '',
-    snapshot:{label:'本地模型快照',observedAt:config.observedAt,builtAt,revision,modelHash},
+  return {id:config.id, locale, name:config.name, subtitle:config.subtitle || '', scope:config.scope || '', notice:config.notice || '',
+    snapshot:{label:locale === 'en' ? 'Local model snapshot' : '本地模型快照',observedAt:config.observedAt,builtAt,revision,modelHash},
     domains,layers:layers.map(({id,label,description}) => ({id,label,description})), statuses,
     overviewModuleIds:overview, defaultFlowId:config.defaultFlowId || flows[0]?.id || '',
     modules,relations,flows,states,recentWork:config.recentWork || null,techUrl:`./technical/${config.id}/#/view/index/`};

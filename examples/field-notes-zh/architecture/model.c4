@@ -1,0 +1,64 @@
+specification {
+  element area
+  element interface
+  element service
+  element store
+}
+
+model {
+  collect = area '采集域' {
+    notebook = interface '观察记录页' {
+      description '用于记录观察内容的虚构表单。'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+    inbox = store '观察收集箱' {
+      description '临时保存新笔记的虚构收集区。'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+  }
+
+  organize = area '整理域' {
+    sorter = service '笔记分类器' {
+      description '按主题整理笔记的虚构服务。'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+    catalog = store '主题目录' {
+      description '保存已整理笔记的虚构主题目录。'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+  }
+
+  share = area '分享域' {
+    digest = service '摘要生成器' {
+      description '汇总笔记并生成简短摘要的虚构服务。'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+    reader = interface '摘要阅读页' {
+      description '用于阅读摘要的虚构页面。'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+  }
+
+  collect.notebook -> collect.inbox '保存笔记'
+  collect.inbox -> organize.sorter '传递新笔记'
+  organize.sorter -> organize.catalog '保存主题'
+  organize.catalog -> share.digest '选取笔记'
+  share.digest -> share.reader '发布摘要'
+}
+
+views {
+  view index {
+    title '观察笔记架构'
+    include collect.notebook, collect.inbox, organize.sorter, organize.catalog,
+      share.digest, share.reader
+  }
+
+  dynamic view note_to_digest {
+    title '笔记生成摘要'
+    collect.notebook -> collect.inbox '保存笔记'
+    collect.inbox -> organize.sorter '传递新笔记'
+    organize.sorter -> organize.catalog '保存主题'
+    organize.catalog -> share.digest '选取笔记'
+    share.digest -> share.reader '发布摘要'
+  }
+}

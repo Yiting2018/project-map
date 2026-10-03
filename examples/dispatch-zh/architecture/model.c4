@@ -1,0 +1,63 @@
+specification {
+  element area
+  element interface
+  element component
+}
+
+model {
+  intake = area '收件域' {
+    counter = interface '包裹收件台' {
+      description '用于接收样本包裹的虚构页面。'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+    labeler = component '标签生成器' {
+      description '为样本包裹分配标签的虚构组件。'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+    queue = component '收件队列' {
+      description '保存已贴标签样本包裹的虚构队列。'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+  }
+
+  routing = area '路线域' {
+    planner = component '路线规划器' {
+      description '选择演示路线的虚构组件。'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+    board = interface '派送看板' {
+      description '显示演示路线分配结果的虚构页面。'
+      metadata { source 'evidence/fictional-record.md' }
+    }
+  }
+
+  intake.counter -> intake.labeler '提交包裹'
+  intake.labeler -> intake.queue '已贴标签包裹入队'
+  intake.queue -> routing.planner '请求路线'
+  routing.planner -> routing.board '显示分配结果'
+  routing.board -> routing.planner '请求调整'
+  routing.planner -> intake.queue '返回重新贴标'
+}
+
+views {
+  view index {
+    title '包裹实验室架构'
+    include intake.counter, intake.labeler, intake.queue, routing.planner, routing.board
+  }
+
+  dynamic view parcel_dispatch {
+    title '包裹派送'
+    intake.counter -> intake.labeler '提交包裹'
+    intake.labeler -> intake.queue '已贴标签包裹入队'
+    intake.queue -> routing.planner '请求路线'
+    routing.planner -> routing.board '显示分配结果'
+  }
+
+  dynamic view route_revision {
+    title '路线调整'
+    routing.board -> routing.planner '请求调整'
+    routing.planner -> intake.queue '返回重新贴标'
+    intake.queue -> routing.planner '重新请求路线'
+    routing.planner -> routing.board '显示调整结果'
+  }
+}

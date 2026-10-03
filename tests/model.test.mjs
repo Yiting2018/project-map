@@ -358,3 +358,15 @@ test('state diagrams accept exactly one checked source form and attach to known 
     assert.throws(() => normalize({ config }), /Unknown module/i);
   });
 });
+
+
+test('project locale validates and controls generated fallback text', () => {
+  assert.equal(normalize().locale, 'zh-CN');
+  const config = projectConfig({locale: 'en'});
+  config.flows[0].conclusion = '';
+  const project = normalize({config});
+  assert.equal(project.locale, 'en');
+  assert.equal(project.snapshot.label, 'Local model snapshot');
+  assert.equal(project.flows[0].conclusion, 'No flow acceptance recorded');
+  assert.throws(() => normalize({config: projectConfig({locale: 'unknown'})}), /Unsupported locale/);
+});

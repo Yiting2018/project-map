@@ -12,7 +12,7 @@ try {
   }});
   const [command] = positionals;
   if (values.help || !command) {
-    console.log(`Project Map 0.1.0
+    console.log(`Project Map 0.1.1
   project-map init --dir <empty-directory>
   project-map validate --root <workspace> [--config project-map.json]
   project-map build --root <workspace> [--config project-map.json] [--out dist/project-map]

@@ -1,0 +1,11 @@
+stateDiagram-v2
+  state "已收件" as Received
+  state "已贴标" as Labeled
+  state "已分配路线" as Routed
+  state "待调整" as RevisionRequested
+  [*] --> Received
+  Received --> Labeled: 示例标签已分配
+  Labeled --> Routed: 示例路线已选定
+  Routed --> RevisionRequested: 请求示例调整
+  RevisionRequested --> Labeled: 示例重新贴标
+  Routed --> [*]: 显示示例派送

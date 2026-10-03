@@ -1,9 +1,9 @@
 {
   "id": "parcel-lab",
-  "name": "Parcel Lab",
-  "subtitle": "A fictional parcel-routing laboratory",
-  "scope": "Fictional package example",
-  "notice": "All names, records, dates, and evidence in this project are fictional demonstration data.",
+  "name": "包裹实验室",
+  "subtitle": "一个演示包裹收件与路线分配的虚构实验室",
+  "scope": "虚构项目示例",
+  "notice": "本项目中的名称、记录、日期和证据均为虚构演示数据。",
   "observedAt": "2026-02-02",
   "modelPath": "architecture",
   "likec4Project": "parcellab",
@@ -23,16 +23,16 @@
   "layers": [
     {
       "id": "interface",
-      "label": "Interface",
-      "description": "Fictional operator-facing surfaces",
+      "label": "交互层",
+      "description": "面向虚构操作人员的页面",
       "kinds": [
         "interface"
       ]
     },
     {
       "id": "component",
-      "label": "Component",
-      "description": "Fictional routing components",
+      "label": "能力层",
+      "description": "用于虚构路线分配的组件",
       "kinds": [
         "component"
       ]
@@ -43,7 +43,7 @@
   "gapRelationKinds": [],
   "gapMarkers": [],
   "scopeGroups": [],
-  "defaultModuleScope": "Fictional example",
+  "defaultModuleScope": "虚构示例",
   "overviewModuleIds": [
     "intake.counter",
     "intake.labeler",
@@ -54,12 +54,12 @@
   "statuses": [
     {
       "id": "sketch",
-      "label": "Fictional sketch",
+      "label": "示例构想",
       "color": "#b88416"
     },
     {
       "id": "exercise",
-      "label": "Fictional exercise",
+      "label": "示例演练",
       "color": "#8c61cb"
     }
   ],
@@ -68,22 +68,22 @@
   "flows": [
     {
       "viewId": "parcel_dispatch",
-      "title": "Parcel dispatch",
-      "scope": "Fictional sequence",
-      "conclusion": "Demonstration sequence only; no real dispatch was executed."
+      "title": "包裹派送",
+      "scope": "虚构流程",
+      "conclusion": "仅用于演示流程，未执行真实派送。"
     },
     {
       "viewId": "route_revision",
-      "title": "Route revision",
-      "scope": "Fictional sequence",
-      "conclusion": "Demonstration loop only; no real revision was tested."
+      "title": "路线调整",
+      "scope": "虚构流程",
+      "conclusion": "仅用于演示回路，未验证真实路线调整。"
     }
   ],
   "states": [
     {
       "id": "parcel",
-      "title": "Fictional parcel states",
-      "description": "A demonstration state diagram with no production meaning.",
+      "title": "虚构包裹状态",
+      "description": "仅供演示的状态图，不代表生产业务规则。",
       "moduleIds": [
         "intake.queue",
         "routing.planner",
@@ -93,13 +93,13 @@
     }
   ],
   "recentWork": {
-    "title": "Fictional routing exercise recorded",
-    "summary": "The sample intentionally contains two domains, two layers, five modules, two simple flows, and one Mermaid state diagram.",
-    "location": "Package example",
+    "title": "虚构路线演练已记录",
+    "summary": "本示例包含两个领域、两个层级、五个模块、两条简单流程和一张状态图。",
+    "location": "工具包示例",
     "source": {
-      "title": "Fictional record",
+      "title": "虚构记录",
       "path": "evidence/fictional-record.md"
     }
   },
-  "locale": "en"
+  "locale": "zh-CN"
 }

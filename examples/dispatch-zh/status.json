@@ -1,0 +1,36 @@
+{
+  "modules": [
+    {
+      "moduleId": "intake.queue",
+      "phase": "exercise",
+      "summary": "这条虚构演练记录仅用于演示状态展示。",
+      "blockers": [],
+      "work": [
+        "示例任务：跟踪一个包裹样本的队列流转"
+      ],
+      "acceptance": [
+        {
+          "title": "示例队列跟踪",
+          "result": "not_run"
+        }
+      ],
+      "evidence": [
+        {
+          "title": "虚构演示记录",
+          "path": "evidence/fictional-record.md",
+          "recordedAt": "2026-02-02",
+          "scope": "虚构示例，不是真实运行的证据"
+        }
+      ]
+    },
+    {
+      "moduleId": "routing.planner",
+      "phase": "sketch",
+      "summary": "这条虚构构想尚未定义验收标准。",
+      "blockers": [],
+      "work": [],
+      "acceptance": [],
+      "evidence": []
+    }
+  ]
+}

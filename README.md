@@ -1,14 +1,18 @@
 # Project Map
 
-`project-map-kit` 把仓库中的 LikeC4 模型、项目配置、状态记录和可选 Mermaid 状态图构建成可离线浏览的静态 Project Map。构建和浏览过程不调用 LLM，不连接远程 API，也不会自动上传仓库或生成的网站。
+**English** · [简体中文](README.zh-CN.md)
 
-仓库内附带两套完全虚构的示例：`Field Notes` 展示 3 个领域、3 个层级、6 个模块和 1 条流程；`Parcel Lab` 展示 2 个领域、2 个层级、5 个模块、2 条流程和 1 张 Mermaid 状态图。示例状态和证据均明确标记为虚构数据。
+`project-map-kit` turns LikeC4 models, project configuration, status records and optional Mermaid state diagrams into a static project map. Building and viewing the map make no LLM calls, use no remote data API, and never automatically upload your repository or generated site.
 
-![Field Notes fictional example](docs/images/overview.jpg)
+Two entirely fictional examples are included: **Field Notes** has 3 domains, 3 layers, 6 modules and 1 flow; **Parcel Lab** has 2 domains, 2 layers, 5 modules, 2 flows and 1 state diagram. Both have complete English and Chinese editions. All sample status records and evidence are explicitly fictional.
 
-## 快速开始
+![Project Map interaction demo — English edition](docs/images/demo-en.gif)
 
-需要 Node.js 22.22.3 或更高版本。在下载的仓库根目录安装锁定依赖并构建双项目演示：
+*Captured from the actual fictional example: overview → module details → business flow → development status. [Static overview](docs/images/overview-en.jpg).*
+
+## Quick start
+
+Requires Node.js 22.22.3 or later. From the downloaded repository:
 
 ```bash
 npm ci
@@ -17,25 +21,29 @@ npm run build:demo
 npm run preview
 ```
 
-预览命令会启动本地静态服务器。终端会显示访问地址；默认端口由包脚本决定。
+Open the edition you want:
 
-## 初始化独立模型
+- English: http://127.0.0.1:5191/?project=field-notes
+- Chinese: http://127.0.0.1:5191/zh-CN/?project=field-notes
 
-目标目录必须为空。`init` 会把 `examples/field-notes` 的完整内容复制进去，作为可直接修改的模板：
+Each edition contains the same two fictional projects. `build:demo` builds English first, then Chinese. Rebuilding English alone replaces the whole output directory; run `npm run build:demo:zh` afterwards to restore the Chinese edition.
+
+## Start your own model
+
+The target must be new or empty. `init` copies the complete English Field Notes example:
 
 ```bash
-mkdir ../my-project-map
 npm exec -- project-map init --dir ../my-project-map
 npm exec -- project-map validate --root ../my-project-map
 npm exec -- project-map build --root ../my-project-map --out dist/project-map
 npm exec -- project-map serve --dir ../my-project-map/dist/project-map --port 5191
 ```
 
-也可以跳过 npm 的 bin 解析，使用 `node bin/project-map.mjs` 加同样的参数。
+For the Chinese starter, copy the contents of `examples/field-notes-zh/` into an empty directory, then use the same validation and build commands. You can also invoke the CLI directly with `node bin/project-map.mjs`.
 
-## 接入外部仓库
+## Use in another repository
 
-先把本包作为外部仓库的开发依赖安装，再在外部仓库根目录放置 `project-map.json`。manifest 中的项目 JSON 路径相对 manifest 文件；项目配置中的模型、状态、证据和状态图路径相对该项目的 `project.json`。
+Install this toolkit as a development dependency, then add a `project-map.json` manifest:
 
 ```bash
 npm install --save-dev ../project-map
@@ -44,15 +52,15 @@ npm exec -- project-map build --root . --config project-map.json --out dist/proj
 npm exec -- project-map serve --dir dist/project-map --port 5191
 ```
 
-上面的安装路径按工具包实际位置调整。详细字段和路径规则见 [配置格式](docs/configuration.md)。可将完整的 `skills/project-map/` 文件夹复制到目标仓库的 `.agents/skills/project-map/`，或让 Agent 直接读取其中的 [SKILL.md](skills/project-map/SKILL.md)。
+Adjust the installation path to your downloaded toolkit. Manifest project paths are relative to the manifest; model, status, evidence and state diagram paths are relative to each `project.json`. See the [configuration reference](docs/configuration.md) (Chinese).
 
-接入提示词示例：
+Copy the complete `skills/project-map/` directory into `.agents/skills/project-map/` in your target repository, or ask your agent to read its [SKILL.md](skills/project-map/SKILL.md). An example onboarding prompt:
 
-> 使用 Project Map Skill 阅读当前项目的正式文档与相关代码，建立真实的领域、模块、关系和核心流程。复用工具包 UI，所有业务信息写入模型与配置；无法确认的内容标记 NEEDS_CONFIRMATION，缺少状态记录则保持未记录。保留来源，运行校验并构建本地预览，不修改业务代码、不发布站点。
+> Use the Project Map Skill to read this project's authoritative documents and relevant code. Model its actual domains, modules, relationships and core flows. Reuse the toolkit UI and put all business information in configuration and models. Mark uncertain facts NEEDS_CONFIRMATION and leave missing status unrecorded. Preserve sources, validate and build a local preview. Do not change business code or publish the site.
 
-运行 `npm test` 检查模型、CLI、路径边界、静态服务器与打包清单。当前验证范围见 [验证记录](docs/VALIDATION.md)。
+Run `npm test` for model, CLI, path boundary, static server and package-content checks. See the [validation record](docs/VALIDATION.md) for tested scope and limitations.
 
-## 命令
+## Commands
 
 ```text
 project-map init --dir <emptyDir>
@@ -61,17 +69,17 @@ project-map build --root <workspace> [--config project-map.json] [--out dist/pro
 project-map serve --dir <built> [--port 5191]
 ```
 
-- `init` 只写入指定的空目录。
-- `validate` 解析并检查输入，不生成静态站点。
-- `build` 生成可离线托管的静态目录。
-- `serve` 只服务已经构建的目录。
+`init` writes only to an empty directory. `validate` checks inputs without producing a site. `build` generates a static directory. `serve` serves an already-built directory.
 
-## 当前边界
+## Language and current limits
 
-- 配置文件当前只支持 JSON。
-- LikeC4 动态视图只支持简单、线性的步骤列表；`parallel`、`loop` 等复杂 control block 尚不支持。
-- Mermaid 只用于本地状态图源文件；含 Mermaid 状态图的 `validate` 和 `build` 使用本机 Chromium 完整渲染校验，先运行 `npm run browser:install`。
-- 运行时没有 LLM、远程数据读取或自动仓库上传。
-- 静态产物会包含项目名称、模块说明、流程文本、状态记录、证据路径以及 LikeC4 技术视图中的显式模型文本。构建成功不代表适合公开发布；发布前应由用户检查产物并明确选择发布范围。
+- Project `locale` supports `en` and `zh-CN`; omitting it preserves the original Chinese UI default. It controls generic UI copy, not automatic translation of business data.
+- Write domain, module, flow, status, evidence and diagram labels in the selected language. Keep stable IDs and file paths unchanged. Chinese examples use `examples/project-map.zh-CN.json`.
+- Configuration currently accepts JSON only.
+- LikeC4 dynamic views support simple linear steps; complex control blocks such as `parallel` and `loop` are not supported.
+- Mermaid `.mmd` validation and building require a local Chromium-compatible browser. Run `npm run browser:install` first.
+- The upstream LikeC4 technical viewer retains its own built-in toolbar language. The screenshots show this toolkit's monolingual overview pages.
+- Runtime has no LLM, remote data reads or automatic repository uploads.
+- Static output includes your configured names, descriptions, status records, evidence paths and explicit model text in technical views. A successful build does not establish that the site is safe to publish. Review the output and choose its publication scope explicitly.
 
-本项目使用 MIT 许可证，见 [LICENSE](LICENSE)。直接依赖的许可说明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+MIT licensed. See [LICENSE](LICENSE) and [third-party notices](THIRD_PARTY_NOTICES.md).

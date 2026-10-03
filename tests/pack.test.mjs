@@ -11,7 +11,7 @@ const npmCache = mkdtempSync(join(tmpdir(), 'map-pack-cache-'));
 
 after(() => rmSync(npmCache, { recursive: true, force: true }));
 
-test('npm package contains both complete examples and excludes generated or installed files', { timeout: 120_000 }, () => {
+test('npm package contains both language editions and excludes generated or installed files', { timeout: 120_000 }, () => {
   const result = spawnSync('npm', ['pack', '--dry-run', '--ignore-scripts', '--json'], {
     cwd: packageRoot,
     env: { ...process.env, npm_config_cache: npmCache },
@@ -27,9 +27,10 @@ test('npm package contains both complete examples and excludes generated or inst
   const statePaths = paths.filter(path => /^examples\/[^/]+\/states\/[^/]+\.mmd$/.test(path));
   const evidencePaths = paths.filter(path => /^examples\/[^/]+\/evidence\/fictional-record\.md$/.test(path));
 
-  assert.equal(modelPaths.length, 2, `packed models: ${modelPaths.join(', ')}`);
-  assert.equal(statePaths.length, 1, `packed states: ${statePaths.join(', ')}`);
-  assert.equal(evidencePaths.length, 2, `packed evidence: ${evidencePaths.join(', ')}`);
+  assert.equal(modelPaths.length, 4, `packed models: ${modelPaths.join(', ')}`);
+  assert.equal(statePaths.length, 2, `packed states: ${statePaths.join(', ')}`);
+  assert.equal(evidencePaths.length, 4, `packed evidence: ${evidencePaths.join(', ')}`);
+  for (const required of ['examples/project-map.zh-CN.json', 'README.zh-CN.md', 'src/ui/i18n.js']) assert.ok(paths.includes(required), required);
   assert.equal(paths.some(path => path === 'dist' || path.startsWith('dist/') || path.includes('/dist/')), false);
   assert.equal(paths.some(path => path === 'node_modules' || path.startsWith('node_modules/') || path.includes('/node_modules/')), false);
 });

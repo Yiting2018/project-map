@@ -15,6 +15,8 @@ const svgBody = '<svg xmlns="http://www.w3.org/2000/svg"><text>fixture</text></s
 
 mkdirSync(join(publicRoot, 'nested'));
 writeFileSync(join(publicRoot, 'index.html'), indexBody);
+mkdirSync(join(publicRoot, 'zh-CN', 'technical', 'sample'), {recursive:true});
+writeFileSync(join(publicRoot, 'zh-CN', 'technical', 'sample', 'index.html'), indexBody);
 writeFileSync(join(publicRoot, 'app.js'), scriptBody);
 writeFileSync(join(publicRoot, 'diagram.svg'), svgBody);
 writeFileSync(join(publicRoot, 'nested', 'data.json'), '{"fixture":true}\n');
@@ -129,5 +131,13 @@ test('a symlink beneath the static directory cannot expose an outside file', asy
 
   assert.ok([403, 404].includes(response.status));
   assert.equal(response.body.includes('outside fixture'), false);
+  assertLockedDownPolicy(response);
+});
+
+
+test('nested language editions preserve the technical viewer CSP', async () => {
+  const response = await request('/zh-CN/technical/sample/');
+  assert.equal(response.status, 200);
+  assert.match(response.headers['content-security-policy'], /script-src 'self' 'unsafe-inline'/);
   assertLockedDownPolicy(response);
 });

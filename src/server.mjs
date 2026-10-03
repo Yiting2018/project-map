@@ -18,7 +18,7 @@ export function createDashboardServer(directory) {
       if (!file.startsWith(root+sep)) {res.writeHead(403).end();return;}
       if (!(await realpath(file)).startsWith((await realpath(root))+sep)) {res.writeHead(403).end();return;}
       const body = await readFile(file);
-      const policy = path.startsWith('/technical/') ? technicalCsp : extname(file)==='.svg' ? "sandbox; default-src 'none'; connect-src 'none'; style-src 'unsafe-inline'" : csp;
+      const policy = path.split('/').slice(1, -1).includes('technical') ? technicalCsp : extname(file)==='.svg' ? "sandbox; default-src 'none'; connect-src 'none'; style-src 'unsafe-inline'" : csp;
       res.writeHead(200,{'Content-Type':types[extname(file)]||'application/octet-stream','Content-Length':body.byteLength,'Content-Security-Policy':policy,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});
       res.end(req.method==='HEAD'?undefined:body);
     } catch {res.writeHead(404).end('Not found');}

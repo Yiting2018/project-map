@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="__PAGE_LANG__">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,19 +8,20 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"
     >
-    <title>Project Map Dashboard</title>
+    <title>__PAGE_TITLE__</title>
     <link rel="stylesheet" href="./style.css">
     <script src="./data.js" defer></script>
+    <script src="./i18n.js" defer></script>
     <script src="./app.js" defer></script>
   </head>
   <body>
-    <a class="skip-link" href="#main-content">跳到主要内容</a>
+    <a class="skip-link" href="#main-content">__SKIP_LINK__</a>
     <div id="app" data-testid="dashboard-app">
       <div class="boot-state" role="status">
         <span class="boot-mark" aria-hidden="true"></span>
-        <span>正在整理项目快照…</span>
+        <span>__BOOT_TEXT__</span>
       </div>
     </div>
-    <noscript>此只读 Dashboard 需要启用 JavaScript 才能展示静态项目数据。</noscript>
+    <noscript>__NOSCRIPT_TEXT__</noscript>
   </body>
 </html>

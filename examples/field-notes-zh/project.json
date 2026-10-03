@@ -1,9 +1,9 @@
 {
   "id": "field-notes",
-  "name": "Field Notes",
-  "subtitle": "A fictional note-to-digest workspace",
-  "scope": "Fictional package example",
-  "notice": "All names, records, dates, and evidence in this project are fictional demonstration data.",
+  "name": "观察笔记",
+  "subtitle": "一个从记录观察到分享摘要的虚构工作空间",
+  "scope": "虚构项目示例",
+  "notice": "本项目中的名称、记录、日期和证据均为虚构演示数据。",
   "observedAt": "2026-01-15",
   "modelPath": "architecture",
   "likec4Project": "fieldnotes",
@@ -28,24 +28,24 @@
   "layers": [
     {
       "id": "touchpoint",
-      "label": "Touchpoint",
-      "description": "Where a fictional user interacts",
+      "label": "交互层",
+      "description": "虚构用户的操作入口",
       "kinds": [
         "interface"
       ]
     },
     {
       "id": "service",
-      "label": "Service",
-      "description": "Where fictional work is coordinated",
+      "label": "业务层",
+      "description": "虚构业务的处理与协作",
       "kinds": [
         "service"
       ]
     },
     {
       "id": "record",
-      "label": "Record",
-      "description": "Where fictional information is retained",
+      "label": "数据层",
+      "description": "虚构信息的保存位置",
       "kinds": [
         "store"
       ]
@@ -56,7 +56,7 @@
   "gapRelationKinds": [],
   "gapMarkers": [],
   "scopeGroups": [],
-  "defaultModuleScope": "Fictional example",
+  "defaultModuleScope": "虚构示例",
   "overviewModuleIds": [
     "collect.notebook",
     "collect.inbox",
@@ -68,12 +68,12 @@
   "statuses": [
     {
       "id": "draft",
-      "label": "Fictional draft",
+      "label": "示例草稿",
       "color": "#b88416"
     },
     {
       "id": "reviewed",
-      "label": "Fictionally reviewed",
+      "label": "示例已审阅",
       "color": "#2875e8"
     }
   ],
@@ -82,20 +82,20 @@
   "flows": [
     {
       "viewId": "note_to_digest",
-      "title": "Note to digest",
-      "scope": "Fictional sequence",
-      "conclusion": "Demonstration sequence only; it does not represent a tested system."
+      "title": "笔记生成摘要",
+      "scope": "虚构流程",
+      "conclusion": "仅用于演示流程，不代表系统已经通过验收。"
     }
   ],
   "states": [],
   "recentWork": {
-    "title": "Fictional example assembled",
-    "summary": "The sample intentionally contains three domains, three layers, six modules, and one simple flow.",
-    "location": "Package example",
+    "title": "虚构示例已整理",
+    "summary": "本示例包含三个领域、三个层级、六个模块和一条简单流程。",
+    "location": "工具包示例",
     "source": {
-      "title": "Fictional record",
+      "title": "虚构记录",
       "path": "evidence/fictional-record.md"
     }
   },
-  "locale": "en"
+  "locale": "zh-CN"
 }

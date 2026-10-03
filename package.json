@@ -1,19 +1,39 @@
 {
   "name": "project-map-kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Configuration-driven project architecture, flows and evidence in a static dashboard",
   "type": "module",
   "license": "MIT",
-  "bin": { "project-map": "bin/project-map.mjs" },
-  "files": ["bin/", "src/", "examples/project-map.json", "examples/*/project*.json", "examples/*/status.json", "examples/*/architecture/**", "examples/*/states/**", "examples/*/evidence/**", "skills/", "docs/", "README.md", "LICENSE", "THIRD_PARTY_NOTICES.md"],
+  "bin": {
+    "project-map": "bin/project-map.mjs"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "examples/project-map*.json",
+    "examples/*/project*.json",
+    "examples/*/status.json",
+    "examples/*/architecture/**",
+    "examples/*/states/**",
+    "examples/*/evidence/**",
+    "skills/",
+    "docs/",
+    "README*.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
   "scripts": {
     "test": "node --test tests/*.test.mjs",
-    "build:demo": "node bin/project-map.mjs build --root examples",
-    "validate:demo": "node bin/project-map.mjs validate --root examples",
+    "build:demo": "npm run build:demo:en && npm run build:demo:zh",
+    "validate:demo": "node bin/project-map.mjs validate --root examples && node bin/project-map.mjs validate --root examples --config project-map.zh-CN.json",
     "preview": "node bin/project-map.mjs serve --dir examples/dist/project-map --port 5191",
-    "browser:install": "playwright install chromium"
+    "browser:install": "playwright install chromium",
+    "build:demo:en": "node bin/project-map.mjs build --root examples",
+    "build:demo:zh": "node bin/project-map.mjs build --root examples --config project-map.zh-CN.json --out dist/project-map/zh-CN"
   },
-  "engines": { "node": ">=22.22.3" },
+  "engines": {
+    "node": ">=22.22.3"
+  },
   "dependencies": {
     "@phosphor-icons/core": "2.1.1",
     "likec4": "1.59.4",

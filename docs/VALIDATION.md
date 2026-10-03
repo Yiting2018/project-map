@@ -1,12 +1,21 @@
-# 0.1.0 验证记录
+# Validation
 
-2026-10-03，本地 Node.js 26.7.0 / npm 11.19.0。
+## 0.1.1 — English and Chinese editions
 
-- 54 项自动测试通过：配置引用、层级与状态、数据隔离、CLI 初始化、无 Git 校验、软链接与路径边界、输入保护、被动 SVG、只读 HTTP 与 npm 分发清单。
-- 双虚构项目构建通过；Mermaid 状态图使用本机 Chromium 兼容浏览器渲染，输出通过 XML 解析。
-- npm tarball 在一个包外的新目录安装后，通过 `init → validate → build`，目标目录没有 Git；未依赖工具源码相邻的开发环境。
-- 浏览器检查了双项目切换、模块详情、流程入口、独立状态 SVG 与 LikeC4 技术图。总览实际检查尺寸为 1440×900，无页面横向溢出。
-- 主 Dashboard 检查时未观察到控制台错误。独立 SVG/技术图导航期间，应用内浏览器记录了一条 animation 异常，未归因；图可显示，不宣称第三方查看器全路径无错误。
-- 源码、分发清单及生成站点经本地审查；示例和截图均为虚构内容。没有自动仓库扫描、上传或 LLM 运行入口；静态页面使用 CSP 禁止网络连接。
+2026-10-03, local Node.js 26.7.0 / npm 11.19.0.
 
-此记录是工具的本地验证，不是示例业务验收；尚未完成 Windows、Linux、手机端或完整辅助技术验收。
+- 60 automated tests passed, including locale validation, translated UI coverage, initial HTML language, complete bilingual package contents and nested technical-view serving.
+- Both fictional projects build in English and Chinese, including translated Mermaid state diagrams. The translated pairs retain identical module IDs, relationship endpoints and status phases.
+- Actual browser checks covered overview, module details, linked flow navigation and development status in each language at 1440×900. English overview had no horizontal overflow; the Chinese overview was also visually inspected.
+- The README GIFs contain four frames captured from those actual UI states, loop for 12 seconds and are each under 1 MB. Static full-page screenshots are supplied as well.
+- The repository provides English and Chinese READMEs. Example text and core UI labels use the selected language; stable machine IDs and evidence file paths are preserved. The upstream LikeC4 viewer retains its own toolbar language.
+- Distribution uses repository files and GIFs; no hosted demo or Pages workflow is included.
+
+## 0.1.0 baseline
+
+- 54 automated tests passed for model references, hierarchy, status, CLI initialization, no-Git validation, symlinks, path containment, input protection, passive SVG, read-only HTTP and package contents.
+- The npm tarball installed in a fresh directory outside the source package and passed init → validate → build with no Git repository.
+- Two fictional examples and Mermaid diagrams built; SVG output passed XML parsing.
+- The main dashboard had no observed console errors. During standalone SVG/technical-view navigation, the in-app browser recorded one unassigned animation exception; the views displayed. This does not claim all third-party viewer paths are error-free.
+
+These are local toolkit checks, not acceptance of any sample business. Windows, Linux, mobile and full assistive-technology acceptance remain unverified. Sources, generated output and package contents are reviewed before release; all examples and screenshots are fictional. Runtime has no LLM or automatic repository-upload entry point.

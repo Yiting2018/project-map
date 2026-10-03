@@ -121,8 +121,12 @@ export async function buildProjectMap({root,config='project-map.json',out='dist/
     const serialized=JSON.stringify({schemaVersion:1,projects}).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');
     await writeFile(join(site,'data.js'),`window.PROJECT_MAP_DATA = ${serialized};\n`);
     const hashes={};
-    for (const file of ['index.html','app.js','style.css']) {
-      const contents=await readFile(join(packageRoot,'src/ui',file));
+    const pageCopy = projects[0].locale === 'en'
+      ? {PAGE_LANG:'en',PAGE_TITLE:'Project Map',SKIP_LINK:'Skip to main content',BOOT_TEXT:'Preparing project snapshot…',NOSCRIPT_TEXT:'Enable JavaScript to view this read-only project map.'}
+      : {PAGE_LANG:'zh-CN',PAGE_TITLE:'项目地图',SKIP_LINK:'跳到主要内容',BOOT_TEXT:'正在整理项目快照…',NOSCRIPT_TEXT:'启用脚本后即可查看这份只读项目地图。'};
+    for (const file of ['index.html','i18n.js','app.js','style.css']) {
+      let contents=await readFile(join(packageRoot,'src/ui',file));
+      if (file === 'index.html') contents=Buffer.from(contents.toString().replace(/__(PAGE_LANG|PAGE_TITLE|SKIP_LINK|BOOT_TEXT|NOSCRIPT_TEXT)__/g,(_,key)=>pageCopy[key]));
       await writeFile(join(site,file),contents);
       hashes[file]=sha(contents);
     }

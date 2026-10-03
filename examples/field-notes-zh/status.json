@@ -1,0 +1,38 @@
+{
+  "modules": [
+    {
+      "moduleId": "collect.notebook",
+      "phase": "reviewed",
+      "summary": "这条虚构状态记录仅用于演示模块详情。",
+      "blockers": [],
+      "work": [
+        "示例任务：审阅笔记字段"
+      ],
+      "acceptance": [
+        {
+          "title": "示例表单走查",
+          "result": "passed"
+        }
+      ],
+      "evidence": [
+        {
+          "title": "虚构演示记录",
+          "path": "evidence/fictional-record.md",
+          "recordedAt": "2026-01-15",
+          "scope": "虚构示例，不是真实验收的证据"
+        }
+      ]
+    },
+    {
+      "moduleId": "share.digest",
+      "phase": "draft",
+      "summary": "这条虚构草稿记录尚未定义验收项。",
+      "blockers": [
+        "一项虚构依赖尚未说明"
+      ],
+      "work": [],
+      "acceptance": [],
+      "evidence": []
+    }
+  ]
+}

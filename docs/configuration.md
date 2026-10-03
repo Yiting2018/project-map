@@ -25,6 +25,7 @@ Project Map 使用一份 manifest 聚合一个或多个项目。配置文件当�
 {
   "id": "field-notes",
   "name": "Field Notes",
+  "locale": "en",
   "observedAt": "2026-01-15",
   "modelPath": "architecture",
   "likec4Project": "fieldnotes",
@@ -56,6 +57,7 @@ Project Map 使用一份 manifest 聚合一个或多个项目。配置文件当�
 | 字段 | 含义 |
 | --- | --- |
 | `id`, `name` | 稳定机器 ID 和展示名称 |
+| `locale` | 通用界面语言：`en` 或 `zh-CN`；省略时保持中文 |
 | `subtitle`, `scope`, `notice` | 项目说明与展示范围 |
 | `observedAt` | 状态记录所对应的观察日期，不是构建时间 |
 | `modelPath`, `likec4Project` | LikeC4 项目目录与项目名 |
@@ -139,3 +141,7 @@ notebook = interface 'Notebook' {
 状态图 ID 只能包含字母、数字、下划线和连字符。构建器会从本地 Mermaid 源生成静态 SVG，并把它与列出的模块关联。含 Mermaid 状态图的 `validate` 和 `build` 都会通过本机 Chromium 做完整渲染校验；首次使用前运行工具包的 `npm run browser:install`。`validate` 的渲染结果只存在于临时目录，不生成站点。状态图只表达模型中已确认的状态，不应从代码命名或界面截图猜测业务规则。
 
 也可用 `assetPath` 指向预先绘制的本地 SVG，与 `sourcePath` 二选一。预制 SVG 仅支持被动图形：不含脚本、事件处理、HTML foreignObject、样式块/属性、动画或外部资源引用；复杂状态图请提供 `.mmd`。程序生成的 Mermaid 图在禁网的隔离浏览器中以 strict 模式渲染。
+
+## 中英文示例
+
+英文 manifest 为 `examples/project-map.json`，中文为 `examples/project-map.zh-CN.json`。中英文示例使用相同的稳定模块 ID、关系和状态含义，独立编写展示文本；界面不会调用翻译 API 或 LLM。`locale` 不会翻译模型，接入者需保持模型与记录的文案语言一致。构建生成的 HTML 初始文案采用 manifest 中第一个项目的语言；切换项目后界面采用当前项目的语言。
